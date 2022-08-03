@@ -521,11 +521,15 @@ def run_recurring_lists_logic(args, api, item, child_items, child_items_all, reg
                                     if len(today_str[1]) == 1:
                                         today_str[1] = ''.join(
                                             ['0', today_str[1]])
+                                    if len(today_str[2]) == 1:
+                                        today_str[2] = ''.join(
+                                            ['0', today_str[2]])
 
                                     # Update due-date to today
                                     item_due = item['due']
                                     item_due['date'] = '-'.join(
                                         today_str)
+                                    logging.debug('Setting task due to: %s' % (item_due))
                                     item.update(due=item_due)
                                     # item.update(due={'date': '2020-05-29', 'is_recurring': True, 'string': 'every day'})
 
